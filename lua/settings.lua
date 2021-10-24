@@ -1,100 +1,104 @@
-require("nvim-treesitter.install").prefer_git = true
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  indent = {
-    enable = true
-  }
-}
+-----------------------------------------------------------
+-- Neovim settings
+-----------------------------------------------------------
 
-require('gitsigns').setup {
-  signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-  },
-  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
-  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
-  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
-  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
+-----------------------------------------------------------
+-- Neovim API aliases
+-----------------------------------------------------------
+--local map = vim.api.nvim_set_keymap  -- set global keymap
+local cmd = vim.cmd     				-- execute Vim commands
+local exec = vim.api.nvim_exec 	-- execute Vimscript
+local g = vim.g         				-- global variables
+local opt = vim.opt         		-- global/buffer/windows-scoped options
 
-    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
-    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+-----------------------------------------------------------
+-- General
+-----------------------------------------------------------
+g.mapleader = ' '             -- change leader to a comma
+opt.mouse = 'a'               -- enable mouse support
+opt.clipboard = 'unnamedplus' -- copy/paste to system clipboard
+opt.swapfile = false          -- don't use swapfile
 
-    ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
-    ['n <leader>hS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
-    ['n <leader>hU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
+-----------------------------------------------------------
+-- Neovim UI
+-----------------------------------------------------------
+opt.number = true             -- show line number
+opt.showmatch = true          -- highlight matching parenthesis
+opt.foldmethod = 'marker'     -- enable folding (default 'foldmarker')
+opt.colorcolumn = '80'        -- line lenght marker at 80 columns
+opt.splitright = true         -- vertical split to the right
+opt.splitbelow = true         -- orizontal split to the bottom
+opt.ignorecase = true         -- ignore case letters when search
+opt.smartcase = true          -- ignore lowercase for the whole pattern
+opt.linebreak = true          -- wrap on word boundary
 
-    -- Text objects
-    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
-  },
-  watch_gitdir = {
-    interval = 1000,
-    follow_files = true
-  },
-  attach_to_untracked = true,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-  current_line_blame_opts = {
-    virt_text = true,
-    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-    delay = 1000,
-  },
-  current_line_blame_formatter_opts = {
-    relative_time = false
-  },
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil, -- Use default
-  max_file_length = 40000,
-  preview_config = {
-    -- Options passed to nvim_open_win
-    border = 'single',
-    style = 'minimal',
-    relative = 'cursor',
-    row = 0,
-    col = 1
-  },
-  yadm = {
-    enable = false
-  },
-}
+-- remove whitespace on save
+cmd [[au BufWritePre * :%s/\s\+$//e]]
 
-require('nvim-autopairs').setup{}
 
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
+-- highlight on yank
+exec([[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+  augroup end
+]], false)
 
--- Lua
-vim.cmd[[colorscheme tokyonight]]
+-----------------------------------------------------------
+-- Memory, CPU
+-----------------------------------------------------------
+opt.hidden = true         -- enable background buffers
+opt.history = 100         -- remember n lines in history
+opt.lazyredraw = true     -- faster scrolling
+opt.synmaxcol = 240       -- max column for syntax highlight
 
-require('lualine').setup {
-  options = {
-    -- ... your lualine config
-    theme = 'tokyonight'
-    -- ... your lualine config
-  }
-}
-vim.g.tokyonight_style = "night"
+-----------------------------------------------------------
+-- Colorscheme
+-----------------------------------------------------------
+opt.termguicolors = true      -- enable 24-bit RGB colors
+
+-----------------------------------------------------------
+-- Tabs, indent
+-----------------------------------------------------------
+opt.expandtab = true      -- use spaces instead of tabs
+opt.shiftwidth = 4        -- shift 4 spaces when tab
+opt.tabstop = 4           -- 1 tab == 4 spaces
+opt.smartindent = true    -- autoindent new lines
+
+-- don't auto commenting new lines
+cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
+
+-- remove line lenght marker for selected filetypes
+cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
+
+-- 2 spaces for selected filetypes
+cmd [[
+  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
+]]
+
+-- IndentLine
+--g.indentLine_setColors = 0  -- set indentLine color
+g.indentLine_char = '|'       -- set indentLine character
+
+-- disable IndentLine for markdown files (avoid concealing)
+cmd [[autocmd FileType markdown let g:indentLine_enabled=0]]
+
+-----------------------------------------------------------
+-- Autocompletion
+-----------------------------------------------------------
+--opt.completeopt = 'menuone,noselect,noinsert'
+
+-----------------------------------------------------------
+-- Terminal
+-----------------------------------------------------------
+-- open a terminal pane on the right using :Term
+cmd [[command Term :botright vsplit term://$SHELL]]
+
+-- Terminal visual tweaks
+--- enter insert mode when switching to terminal
+--- close terminal buffer on process exit
+cmd [[
+    autocmd TermOpen * setlocal listchars= nonumber norelativenumber nocursorline
+    autocmd TermOpen * startinsert
+    autocmd BufLeave term://* stopinsert
+]]
