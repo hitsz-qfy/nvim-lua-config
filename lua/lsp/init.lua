@@ -3,7 +3,6 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local nvim_lsp = require('lspconfig')
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -87,9 +86,82 @@ cmp.setup {
   },
 }
 
+USER = vim.fn.expand('$USER')
+local sumneko_root_path = ""
+local sumneko_binary = ""
+sumneko_root_path = "/home/" .. USER .. "/.config/nvim/lua/lsp/lua-language-server"
+sumneko_binary = "/home/" .. USER .. "/.config/nvim/lua/lsp/lua-language-server/bin/Linux/lua-language-server"
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+local luadev = require("lua-dev").setup({
+  -- add any options here, or leave empty to use the default settings
+  -- lspconfig = {
+  --   cmd = {"lua-language-server"}
+  -- },
+})
+
+nvim_lsp.sumneko_lua.setup {
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+                -- Setup your lua path
+                path = runtime_path
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'}
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+		library = vim.api.nvim_get_runtime_file("", true),
+		checkThirdParty = false,
+		maxPreload = 2000,
+		preloadFileSize = 2000,
+            }
+        }
+    },
+    luadev,
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    capabilities = capabilities,
+}
+
+local util = require 'lspconfig/util'
+nvim_lsp.ccls.setup{
+  filetypes = { 'cc', 'c', 'cpp', 'objc', 'objcpp' },
+  root_dir = function(fname)
+    return util.root_pattern('compile_commands.json')(fname)
+      or util.path.dirname(fname)
+  end,
+  init_options = {
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"} ;
+    };
+    cache = {
+      directory = ".ccls-cache";
+    };
+  },
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = capabilities,
+}
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'ccls', 'cmake'}
+local servers = { 'pyright', 'cmake'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,

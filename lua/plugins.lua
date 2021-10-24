@@ -95,7 +95,16 @@ require('lualine').setup {
     -- ... your lualine config
     theme = 'nightfox'
     -- ... your lualine config
-  }
+  },
+  tabline = {
+    lualine_a = {'buffers'},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {'tabs'}
+  },
+
 }
 vim.o.clipboard = "unnamedplus"
 
@@ -118,7 +127,6 @@ g.nvim_tree_show_icons = {
 }
 
 local nightfox = require('nightfox')
-
 -- This function set the configuration of nightfox. If a value is not passed in the setup function
 -- it will be taken from the default configuration above
 nightfox.setup({
@@ -140,7 +148,8 @@ nightfox.setup({
     LspCodeLens = { bg = "#000000", style = "italic" },
   }
 })
-
 -- Load the configuration set above and apply the colorscheme
 nightfox.load()
+
+require('nvim_comment').setup()
 
