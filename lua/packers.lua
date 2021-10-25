@@ -9,8 +9,6 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'EdenEast/nightfox.nvim'
-
   -- nvim lspconfig
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-cmp'
@@ -78,6 +76,18 @@ return require('packer').startup(function()
   use 'liuchengxu/vista.vim'
 
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+
+  use 'f-person/git-blame.nvim'
+
+  use({
+    'tanvirtin/vgit.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+    },
+  })
+
+  use 'EdenEast/nightfox.nvim'
+
 
 end)
 

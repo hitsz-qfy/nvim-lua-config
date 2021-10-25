@@ -85,19 +85,26 @@ require('gitsigns').setup {
 }
 
 require('nvim-autopairs').setup{}
-
--- Lua
-vim.cmd[[colorscheme nightfox]]
+-- you need setup cmp first put this after cmp.setup()
+require("nvim-autopairs.completion.cmp").setup({
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
+  auto_select = true, -- automatically select the first item
+  insert = false, -- use insert confirm behavior instead of replace
+  map_char = { -- modifies the function or method delimiter by filetypes
+    all = '(',
+    tex = '{'
+  }
+})
 
 require('lualine').setup {
   options = {
     -- ... your lualine config
-    theme = 'nightfox'
+    -- theme = 'nightfox'
     -- ... your lualine config
   },
 }
 vim.o.clipboard = "unnamedplus"
-
 
 g.nvim_tree_gitignore = 1
 g.nvim_tree_hide_dotfiles = 1
@@ -111,31 +118,6 @@ require('nvim-tree').setup{
     auto_resize = false,
   }
 }
-
-local nightfox = require('nightfox')
--- This function set the configuration of nightfox. If a value is not passed in the setup function
--- it will be taken from the default configuration above
-nightfox.setup({
-  fox = "nightfox", -- change the colorscheme to use nordfox
-  styles = {
-    comments = "italic", -- change style of comments to be italic
-    keywords = "bold", -- change style of keywords to be bold
-    functions = "italic,bold" -- styles can be a comma separated list
-  },
-  inverse = {
-    match_paren = false, -- inverse the highlighting of match_parens
-  },
-  colors = {
-    red = "#FF000", -- Override the red color for MAX POWER
-    bg_alt = "#000000",
-  },
-  hlgroups = {
-    TSPunctDelimiter = { fg = "${red}" }, -- Override a highlight group with the color red
-    LspCodeLens = { bg = "#000000", style = "italic" },
-  }
-})
--- Load the configuration set above and apply the colorscheme
-nightfox.load()
 
 require('nvim_comment').setup{}
 
