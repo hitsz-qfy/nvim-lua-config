@@ -31,3 +31,5 @@ map('v', '//', ':CommentToggle<CR>', default_opts)       -- open/close
 
 -- hop 1 char motion
 map('n', '<leader><leader>', ':HopChar1<CR>', {})       -- open/close
+
+map('n', 'gh', ':call CurtineIncSw()<CR>', default_opts)

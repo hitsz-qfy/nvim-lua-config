@@ -86,8 +86,9 @@ return require('packer').startup(function()
     },
   })
 
-  use 'EdenEast/nightfox.nvim'
-
+  -- vim plugins
+  use 'ericcurtin/CurtineIncSw.vim'
+  use 'monsonjeremy/onedark.nvim'
 
 end)
 
