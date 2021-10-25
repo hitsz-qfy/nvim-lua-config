@@ -1,5 +1,5 @@
+require('packers')
+require('lsp')
 require('settings')
 require('keymappings')
-require('packers')
 require('plugins')
-require('lsp')

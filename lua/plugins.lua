@@ -1,3 +1,5 @@
+local g = vim.g
+
 require("nvim-treesitter.install").prefer_git = true
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -84,9 +86,6 @@ require('gitsigns').setup {
 
 require('nvim-autopairs').setup{}
 
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
-
 -- Lua
 vim.cmd[[colorscheme nightfox]]
 
@@ -96,34 +95,21 @@ require('lualine').setup {
     theme = 'nightfox'
     -- ... your lualine config
   },
-  tabline = {
-    lualine_a = {'buffers'},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {'tabs'}
-  },
-
 }
 vim.o.clipboard = "unnamedplus"
 
-local g = vim.g
-g.nvim_tree_ignore = {'.git', 'node_modules', '.cache', '.bin'}
+
 g.nvim_tree_gitignore = 1
-g.nvim_tree_quit_on_open = 0
-g.nvim_tree_indent_markers = 0
 g.nvim_tree_hide_dotfiles = 1
-g.nvim_tree_git_hl = 1
-g.nvim_tree_highlight_opened_files = 1
-g.nvim_tree_disable_window_picker = 1
-g.nvim_tree_respect_buf_cwd = 1
-g.nvim_tree_width_allow_resize  = 1
-g.nvim_tree_show_icons = {
-  git = 1,
-  folders = 1,
-  files = 1,
-  folder_arrows = 1
+g.nvim_tree_quit_on_open = 1
+require('nvim-tree').setup{
+  update_focused_file={
+    enable= true,
+  },
+  view = {
+    width = 45,
+    auto_resize = false,
+  }
 }
 
 local nightfox = require('nightfox')
@@ -137,7 +123,7 @@ nightfox.setup({
     functions = "italic,bold" -- styles can be a comma separated list
   },
   inverse = {
-    match_paren = true, -- inverse the highlighting of match_parens
+    match_paren = false, -- inverse the highlighting of match_parens
   },
   colors = {
     red = "#FF000", -- Override the red color for MAX POWER
@@ -151,5 +137,13 @@ nightfox.setup({
 -- Load the configuration set above and apply the colorscheme
 nightfox.load()
 
-require('nvim_comment').setup()
+require('nvim_comment').setup{}
 
+g.vista_default_executive = 'nvim_lsp'
+g.vista_cpp_executive_for = 'nvim_lsp'
+g.vista_icon_indent = {"╰─▸ ", "├─▸ "}
+g.vista_sidebar_width = 50
+g.vista_highlight_whole_line = 1
+g.vista_cursor_delay = 0
+
+require("bufferline").setup{}

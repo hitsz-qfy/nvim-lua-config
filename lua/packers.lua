@@ -9,6 +9,8 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use 'EdenEast/nightfox.nvim'
+
   -- nvim lspconfig
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-cmp'
@@ -16,9 +18,7 @@ return require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip'
   use 'folke/lua-dev.nvim'
-
   use 'windwp/nvim-autopairs'
-  use 'glepnir/lspsaga.nvim'
 
   -- fuzzy finder
   use {
@@ -37,7 +37,6 @@ return require('packer').startup(function()
     end
   }
 
-
   -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
@@ -50,16 +49,7 @@ return require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require'nvim-tree'.setup {
-      open_on_setup = true,
-      open_on_tab = true,
-      view = {
-        auto_resize = true,
-      }
-    } end
   }
-
-  use 'EdenEast/nightfox.nvim'
 
   use { 'alexghergh/nvim-tmux-navigation',
     config = function() require'nvim-tmux-navigation'.setup {
@@ -85,6 +75,9 @@ return require('packer').startup(function()
       require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   }
+  use 'liuchengxu/vista.vim'
+
+  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 
 end)
 
