@@ -66,6 +66,7 @@ opt.shiftwidth = 2        -- shift 4 spaces when tab
 opt.tabstop = 2           -- 1 tab == 4 spaces
 opt.smartindent = true    -- autoindent new lines
 
+opt.clipboard = "unnamedplus"
 -- don't auto commenting new lines
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 

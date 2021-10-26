@@ -7,10 +7,6 @@ map('', '<down>', '<nop>', {noremap = true})
 map('', '<left>', '<nop>', {noremap = true})
 map('', '<right>', '<nop>', {noremap = true})
 
--- for telescope
-map('n', '<C-p>', ':Telescope find_files<cr>', default_opts)
-map('n', '<C-b>', [[<cmd>lua require('telescope.builtin').buffers()<cr>]], default_opts)
-
 -- move around splits using Ctrl + {h,j,k,l}
 map('n', '<C-h>', '<C-w>h', default_opts)
 map('n', '<C-j>', '<C-w>j', default_opts)
@@ -33,3 +29,6 @@ map('v', '//', ':CommentToggle<CR>', default_opts)       -- open/close
 map('n', '<leader><leader>', ':HopChar1<CR>', {})       -- open/close
 
 map('n', 'gh', ':call CurtineIncSw()<CR>', default_opts)
+
+map('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", default_opts)
+

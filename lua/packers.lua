@@ -18,10 +18,10 @@ return require('packer').startup(function()
   use 'folke/lua-dev.nvim'
   use 'windwp/nvim-autopairs'
 
-  -- fuzzy finder
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+  use { 'ibhagwan/fzf-lua',
+    requires = {
+      'vijaymarupudi/nvim-fzf',
+      'kyazdani42/nvim-web-devicons' } -- optional for icons
   }
 
   use {
@@ -79,16 +79,13 @@ return require('packer').startup(function()
 
   use 'f-person/git-blame.nvim'
 
-  use({
-    'tanvirtin/vgit.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-    },
-  })
-
   -- vim plugins
   use 'ericcurtin/CurtineIncSw.vim'
+
+  -- colorscheme
   use 'monsonjeremy/onedark.nvim'
+  use 'tanvirtin/monokai.nvim'
+  use 'Mofiqul/vscode.nvim'
 
 end)
 

@@ -1,6 +1,7 @@
 local g = vim.g
 
-require('onedark').setup()
+g.vscode_style="dark"
+vim.cmd[[colorscheme vscode]]
 
 require("nvim-treesitter.install").prefer_git = true
 require'nvim-treesitter.configs'.setup {
@@ -102,16 +103,14 @@ require("nvim-autopairs.completion.cmp").setup({
 require('lualine').setup {
   options = {
     -- ... your lualine config
-    theme = 'onedark'
+    theme = 'vscode'
     -- ... your lualine config
   },
 }
-vim.o.clipboard = "unnamedplus"
 
 g.nvim_tree_gitignore = 1
 g.nvim_tree_hide_dotfiles = 1
 g.nvim_tree_quit_on_open = 1
-vim.cmd[[highlight NvimTreeCursorLine guibg=blue]]
 require('nvim-tree').setup{
   update_focused_file={
     enable= true,
