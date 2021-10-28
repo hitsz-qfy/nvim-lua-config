@@ -81,7 +81,7 @@ return require('packer').startup(function()
   -- colorscheme
   -- use 'monsonjeremy/onedark.nvim'
   -- use 'tanvirtin/monokai.nvim'
-  use 'Mofiqul/vscode.nvim'
+  -- use 'Mofiqul/vscode.nvim'
 
   -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 

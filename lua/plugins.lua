@@ -1,8 +1,5 @@
 local g = vim.g
 
-g.vscode_style="dark"
-vim.cmd[[colorscheme vscode]]
-
 require('nvim_comment').setup{}
 
 require("nvim-treesitter.install").prefer_git = true
@@ -98,7 +95,7 @@ require("bufferline").setup{}
 require('lualine').setup {
   options = {
     -- ... your lualine config
-    theme = 'vscode'
+    -- theme = 'vscode'
     -- ... your lualine config
   },
   sections = {
