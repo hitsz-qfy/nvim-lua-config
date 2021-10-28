@@ -73,7 +73,7 @@ return require('packer').startup(function()
       require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   }
-  use 'liuchengxu/vista.vim'
+  -- use 'liuchengxu/vista.vim'
 
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 
@@ -83,9 +83,24 @@ return require('packer').startup(function()
   use 'ericcurtin/CurtineIncSw.vim'
 
   -- colorscheme
-  use 'monsonjeremy/onedark.nvim'
-  use 'tanvirtin/monokai.nvim'
+  -- use 'monsonjeremy/onedark.nvim'
+  -- use 'tanvirtin/monokai.nvim'
   use 'Mofiqul/vscode.nvim'
 
-end)
+  -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  use "lukas-reineke/indent-blankline.nvim"
+
+end)

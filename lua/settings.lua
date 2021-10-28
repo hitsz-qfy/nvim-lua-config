@@ -19,6 +19,7 @@ opt.mouse = 'a'               -- enable mouse support
 opt.clipboard = 'unnamedplus' -- copy/paste to system clipboard
 opt.swapfile = false          -- don't use swapfile
 opt.cursorline = true
+opt.cursorcolumn = true
 
 -----------------------------------------------------------
 -- Neovim UI
@@ -26,7 +27,7 @@ opt.cursorline = true
 opt.number = true             -- show line number
 opt.showmatch = true          -- highlight matching parenthesis
 opt.foldmethod = 'marker'     -- enable folding (default 'foldmarker')
-opt.colorcolumn = '120'        -- line lenght marker at 80 columns
+opt.colorcolumn = '85'        -- line lenght marker at 80 columns
 opt.splitright = true         -- vertical split to the right
 opt.splitbelow = true         -- orizontal split to the bottom
 opt.ignorecase = true         -- ignore case letters when search

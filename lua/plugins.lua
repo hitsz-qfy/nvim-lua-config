@@ -3,22 +3,29 @@ local g = vim.g
 g.vscode_style="dark"
 vim.cmd[[colorscheme vscode]]
 
+require('nvim_comment').setup{}
+
 require("nvim-treesitter.install").prefer_git = true
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
   },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
   indent = {
     enable = true
+  }
+}
+
+g.nvim_tree_gitignore = 1
+g.nvim_tree_hide_dotfiles = 1
+g.nvim_tree_quit_on_open = 1
+g.nvim_tree_indent_markers = 1
+require('nvim-tree').setup{
+  update_focused_file={
+    enable= false,
+  },
+  view = {
+    width = 45,
+    auto_resize = false,
   }
 }
 
@@ -95,10 +102,12 @@ require("nvim-autopairs.completion.cmp").setup({
   auto_select = true, -- automatically select the first item
   insert = false, -- use insert confirm behavior instead of replace
   map_char = { -- modifies the function or method delimiter by filetypes
-    all = '(',
+    -- all = '(',
     tex = '{'
   }
 })
+
+require("bufferline").setup{}
 
 require('lualine').setup {
   options = {
@@ -107,27 +116,3 @@ require('lualine').setup {
     -- ... your lualine config
   },
 }
-
-g.nvim_tree_gitignore = 1
-g.nvim_tree_hide_dotfiles = 1
-g.nvim_tree_quit_on_open = 1
-require('nvim-tree').setup{
-  update_focused_file={
-    enable= true,
-  },
-  view = {
-    width = 45,
-    auto_resize = false,
-  }
-}
-
-require('nvim_comment').setup{}
-
-g.vista_default_executive = 'nvim_lsp'
-g.vista_cpp_executive_for = 'nvim_lsp'
-g.vista_icon_indent = {"╰─▸ ", "├─▸ "}
-g.vista_sidebar_width = 50
-g.vista_highlight_whole_line = 1
-g.vista_cursor_delay = 0
-
-require("bufferline").setup{}

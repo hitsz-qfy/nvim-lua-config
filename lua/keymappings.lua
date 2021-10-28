@@ -26,9 +26,11 @@ map('n', '//', ':CommentToggle<CR>', default_opts)       -- open/close
 map('v', '//', ':CommentToggle<CR>', default_opts)       -- open/close
 
 -- hop 1 char motion
-map('n', '<leader><leader>', ':HopChar1<CR>', {})       -- open/close
+map('n', '<C-s>', ':HopChar1<CR>', {})       -- open/close
 
 map('n', 'gh', ':call CurtineIncSw()<CR>', default_opts)
 
+-- fzf
 map('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", default_opts)
+map('n', '<C-b>', "<cmd>lua require('fzf-lua').buffers()<CR>", default_opts)
 
