@@ -108,5 +108,7 @@ cmd [[
 
 cmd [[autocmd BufNewFile,BufRead *.launch set syntax=xml]]
 
+-- color settings
 cmd [[:highlight Pmenu ctermbg=black guibg=black]]
 cmd [[:highlight PmenuSel ctermbg=blue guibg=blue]]
+cmd [[:highlight Visual ctermbg=brown guibg=brown]]
