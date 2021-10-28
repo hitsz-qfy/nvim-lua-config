@@ -13,9 +13,6 @@ map('n', '<C-j>', '<C-w>j', default_opts)
 map('n', '<C-k>', '<C-w>k', default_opts)
 map('n', '<C-l>', '<C-w>l', default_opts)
 
--- nvim-tree
-map('n', '<C-n>', ':NvimTreeToggle<CR>', default_opts)       -- open/close
-
 -- buffer
 map('n', '<leader>n', ':bnext<CR>', default_opts)       -- open/close
 map('n', '<leader>p', ':bprevious<CR>', default_opts)       -- open/close
@@ -26,7 +23,7 @@ map('n', '//', ':CommentToggle<CR>', default_opts)       -- open/close
 map('v', '//', ':CommentToggle<CR>', default_opts)       -- open/close
 
 -- hop 1 char motion
-map('n', '<C-s>', ':HopChar1<CR>', {})       -- open/close
+map('n', '<C-f>', ':HopChar1<CR>', {})       -- open/close
 
 map('n', 'gh', ':call CurtineIncSw()<CR>', default_opts)
 
@@ -34,3 +31,5 @@ map('n', 'gh', ':call CurtineIncSw()<CR>', default_opts)
 map('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", default_opts)
 map('n', '<C-b>', "<cmd>lua require('fzf-lua').buffers()<CR>", default_opts)
 
+-- ranger
+map('n', '<C-n>', ':RnvimrToggle<CR>', {})       -- open/close

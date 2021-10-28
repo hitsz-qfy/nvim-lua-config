@@ -15,20 +15,6 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
-g.nvim_tree_gitignore = 1
-g.nvim_tree_hide_dotfiles = 1
-g.nvim_tree_quit_on_open = 1
-g.nvim_tree_indent_markers = 1
-require('nvim-tree').setup{
-  update_focused_file={
-    enable= false,
-  },
-  view = {
-    width = 45,
-    auto_resize = false,
-  }
-}
-
 require('gitsigns').setup {
   signs = {
     add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
@@ -115,4 +101,25 @@ require('lualine').setup {
     theme = 'vscode'
     -- ... your lualine config
   },
+  sections = {
+  lualine_x = {'filetype'},
 }
+}
+
+-- ranger
+g.loaded_python_provider=0
+g.python3_host_prog='/usr/local/bin/python3'
+g.loaded_netrw=1
+g.loaded_netrwPlugin=1
+g.rnvimr_enable_ex=1
+g.rnvimr_enable_picker=1
+-- set border for floating window
+g.rnvimr_draw_border = 1
+-- Hide the files included in gitignore
+g.rnvimr_hide_gitignore = 0
+-- Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+g.rnvimr_enable_bw = 1
+-- Add a shadow window, value is equal to 100 will disable shadow
+g.rnvimr_shadow_winblend = 70
+-- Draw border with both
+g.rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
