@@ -107,9 +107,11 @@ cmd [[
 
 cmd [[autocmd BufNewFile,BufRead *.launch set syntax=xml]]
 cmd [[autocmd BufNewFile,BufRead *.sdf set syntax=xml]]
+cmd [[autocmd BufNewFile,BufRead *.world set syntax=xml]]
+
 cmd [[highlight Pmenu guibg=black]]
 cmd [[highlight PmenuSel guibg=blue]]
+cmd [[highlight PmenuThumb guibg=blue]]
 cmd [[highlight Visual guibg=brown]]
--- cmd [[highlight CursorLine guibg=#0000ff]]
 cmd [[highlight CursorLine guibg=#000050]]
 cmd [[highlight CursorColumn guibg=#000050]]

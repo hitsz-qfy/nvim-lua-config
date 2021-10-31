@@ -1,7 +1,3 @@
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
 local nvim_lsp = require('lspconfig')
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -36,31 +32,35 @@ local on_attach = function(client, bufnr)
 
 end
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
 -- luasnip setup
 local luasnip = require 'luasnip'
-
 -- nvim-cmp setup
 local cmp = require 'cmp'
-cmp.setup {
+cmp.setup({
+  completion = {
+    completeopt = 'menu,menuone,noinsert',
+  },
   snippet = {
+    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
+      select = true
+    }),
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -80,11 +80,36 @@ cmp.setup {
       end
     end,
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
+    -- { name = 'vsnip' }, -- For vsnip users.
+    { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
+      { name = 'buffer' },
+    })
+})
+
+-- Use buffer source for `/`.
+-- cmp.setup.cmdline('/', {
+--   sources = {
+--     { name = 'buffer' }
+--   }
+-- })
+
+-- Use cmdline & path source for ':'.
+-- cmp.setup.cmdline(':', {
+--   sources = cmp.config.sources({
+--     { name = 'path' }
+--   }, {
+--       { name = 'cmdline' }
+--     })
+-- })
+
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 USER = vim.fn.expand('$USER')
 local sumneko_root_path = ""

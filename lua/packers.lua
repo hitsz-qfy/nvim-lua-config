@@ -13,6 +13,9 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip'
   use 'folke/lua-dev.nvim'
@@ -37,7 +40,6 @@ return require('packer').startup(function()
 
   -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
   use {
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
