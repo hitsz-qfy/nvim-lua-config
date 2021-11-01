@@ -108,6 +108,9 @@ cmd [[
 cmd [[autocmd BufNewFile,BufRead *.launch set syntax=xml]]
 cmd [[autocmd BufNewFile,BufRead *.sdf set syntax=xml]]
 cmd [[autocmd BufNewFile,BufRead *.world set syntax=xml]]
+cmd [[au BufNewFile,BufRead *.launch setfiletype xml]]
+cmd [[au BufNewFile,BufRead *.sdf setfiletype xml]]
+cmd [[au BufNewFile,BufRead *.world setfiletype xml]]
 
 cmd [[highlight Pmenu guibg=black]]
 cmd [[highlight PmenuSel guibg=blue]]

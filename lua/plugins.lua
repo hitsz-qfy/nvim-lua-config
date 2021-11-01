@@ -1,6 +1,10 @@
 local g = vim.g
 
-require('nvim_comment').setup{}
+require("nvim_comment").setup({
+  hook = function()
+    require("ts_context_commentstring.internal").update_commentstring()
+  end,
+})
 
 require("nvim-treesitter.install").prefer_git = true
 require'nvim-treesitter.configs'.setup {
@@ -18,6 +22,10 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
   }
 }
 

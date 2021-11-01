@@ -101,5 +101,8 @@ return require('packer').startup(function()
 
   use "lukas-reineke/indent-blankline.nvim"
   use 'kevinhwang91/rnvimr'
+  -- use 'psliwka/vim-smoothie'
+
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
 end)
