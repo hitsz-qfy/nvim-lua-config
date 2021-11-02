@@ -21,10 +21,9 @@ return require('packer').startup(function()
   use 'folke/lua-dev.nvim'
   use 'windwp/nvim-autopairs'
 
-  use { 'ibhagwan/fzf-lua',
-    requires = {
-      'vijaymarupudi/nvim-fzf',
-      'kyazdani42/nvim-web-devicons' } -- optional for icons
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   use {
@@ -101,8 +100,6 @@ return require('packer').startup(function()
 
   use "lukas-reineke/indent-blankline.nvim"
   use 'kevinhwang91/rnvimr'
-  -- use 'psliwka/vim-smoothie'
-
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  -- use 'JoosepAlviste/nvim-ts-context-commentstring'
 
 end)

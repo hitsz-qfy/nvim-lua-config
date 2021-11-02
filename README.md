@@ -1,5 +1,35 @@
-compile and install lua-language-server ccls and pyright
+# Neovim configuration for C++ and Python development
 
-install plugins use :PackerSync
+## Requirements
 
-install tree sitter use :TSInstall python c cpp lua
+- Neovim 0.5+
+- lua-language-server
+- ccls
+- pyright
+- cmake-language-server
+
+## Usage
+
+```bash
+$ git clone https://github.com/hitsz-qfy/nvim-lua-config.git ~/.config/
+$ cd ~/.config && mv nvim-lua-config nvim
+$ nvim
+(Nvim):PackerSync
+(Reopen nvim and):TSInstall python c cpp lua cmake
+```
+
+## Key Plugins
+
+- packers
+- nvim-lspconfig
+- nvim-cmp
+- nvim-treesitter
+- telescope
+- gitsigns
+- nvim-web-devicons
+- nvim-tmux-navigation
+- nvim-comment
+- hop.nvim
+- bfferline.nvim
+- git-blame.nvim
+- rnvimr

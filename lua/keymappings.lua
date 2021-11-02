@@ -28,8 +28,10 @@ map('n', '<C-f>', ':HopChar1<CR>', {})       -- open/close
 map('n', 'gh', ':call CurtineIncSw()<CR>', default_opts)
 
 -- fzf
-map('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", default_opts)
-map('n', '<C-b>', "<cmd>lua require('fzf-lua').buffers()<CR>", default_opts)
+-- map('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", default_opts)
+-- map('n', '<C-b>', "<cmd>lua require('fzf-lua').buffers()<CR>", default_opts)
+map('n', '<C-p>', "<cmd>lua require('telescope.builtin').find_files()<cr>", default_opts)
+map('n', '<C-b>', "<cmd>lua require('telescope.builtin').buffers()<cr>", default_opts)
 
 -- ranger
 map('n', '<C-n>', ':RnvimrToggle<CR>', {})       -- open/close

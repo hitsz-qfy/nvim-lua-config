@@ -1,9 +1,9 @@
 local g = vim.g
 
 require("nvim_comment").setup({
-  hook = function()
-    require("ts_context_commentstring.internal").update_commentstring()
-  end,
+  -- hook = function()
+  --   require("ts_context_commentstring.internal").update_commentstring()
+  -- end,
 })
 
 require("nvim-treesitter.install").prefer_git = true
