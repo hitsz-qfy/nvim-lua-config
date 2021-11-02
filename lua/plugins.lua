@@ -1,9 +1,17 @@
 local g = vim.g
 
 require("nvim_comment").setup({
-  -- hook = function()
-  --   require("ts_context_commentstring.internal").update_commentstring()
-  -- end,
+  hook = function()
+    if vim.api.nvim_buf_get_option(0, "filetype") == "cpp" then
+      vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+    end
+    if vim.api.nvim_buf_get_option(0, "filetype") == "c" then
+      vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+    end
+    if vim.api.nvim_buf_get_option(0, "filetype") == "h" then
+      vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+    end
+  end
 })
 
 require("nvim-treesitter.install").prefer_git = true
