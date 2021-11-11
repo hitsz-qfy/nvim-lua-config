@@ -120,8 +120,8 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 USER = vim.fn.expand('$USER')
 local sumneko_root_path = ""
 local sumneko_binary = ""
-sumneko_root_path = "/home/" .. USER .. "/.config/nvim/lua/lsp/lua-language-server"
-sumneko_binary = "/home/" .. USER .. "/.config/nvim/lua/lsp/lua-language-server/bin/Linux/lua-language-server"
+sumneko_root_path = "/home/" .. USER .. "/Dependencies/lua-language-server"
+sumneko_binary = "/home/" .. USER .. "/Dependencies/lua-language-server/bin/Linux/lua-language-server"
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
@@ -174,7 +174,7 @@ nvim_lsp.ccls.setup{
   end,
   init_options = {
     index = {
-      threads = 0;
+      threads = 8;
     };
     clang = {
       excludeArgs = { "-frounding-math"} ;

@@ -26,6 +26,7 @@ opt.cursorcolumn = true
 opt.number = true             -- show line number
 opt.showmatch = true          -- highlight matching parenthesis
 opt.foldmethod = 'marker'     -- enable folding (default 'foldmarker')
+-- opt.foldmethod = 'syntax'     -- enable folding (default 'foldmarker')
 opt.colorcolumn = '100'        -- line lenght marker at 80 columns
 opt.splitright = true         -- vertical split to the right
 opt.splitbelow = true         -- orizontal split to the bottom
@@ -57,6 +58,8 @@ opt.synmaxcol = 240       -- max column for syntax highlight
 -- Colorscheme
 -----------------------------------------------------------
 opt.termguicolors = true      -- enable 24-bit RGB colors
+cmd[[colorscheme dracula]]
+cmd[[syntax enable]]
 
 -----------------------------------------------------------
 -- Tabs, indent

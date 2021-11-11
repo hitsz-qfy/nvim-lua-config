@@ -34,7 +34,7 @@ require'nvim-treesitter.configs'.setup {
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
-  }
+  },
 }
 
 require('gitsigns').setup {
@@ -134,3 +134,16 @@ g.rnvimr_enable_bw = 1
 g.rnvimr_shadow_winblend = 70
 -- Draw border with both
 g.rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+
+require('telescope').setup({
+  defaults = {
+    layout_config = {
+      prompt_position = "top"
+      -- other layout configuration here
+    },
+    sorting_strategy="ascending",
+    -- other defaults configuration here
+  },
+  -- other configuration values here
+})
+
