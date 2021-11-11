@@ -19,7 +19,7 @@ opt.mouse = 'a'               -- enable mouse support
 opt.clipboard = 'unnamedplus' -- copy/paste to system clipboard
 opt.swapfile = false          -- don't use swapfile
 opt.cursorline = true
-opt.cursorcolumn = true
+opt.cursorcolumn = false
 
 -- Neovim UI
 -----------------------------------------------------------
@@ -27,7 +27,7 @@ opt.number = true             -- show line number
 opt.showmatch = true          -- highlight matching parenthesis
 opt.foldmethod = 'marker'     -- enable folding (default 'foldmarker')
 -- opt.foldmethod = 'syntax'     -- enable folding (default 'foldmarker')
-opt.colorcolumn = '100'        -- line lenght marker at 80 columns
+opt.colorcolumn = '110'        -- line lenght marker at 80 columns
 opt.splitright = true         -- vertical split to the right
 opt.splitbelow = true         -- orizontal split to the bottom
 opt.ignorecase = true         -- ignore case letters when search
@@ -115,9 +115,14 @@ cmd [[au BufNewFile,BufRead *.launch setfiletype xml]]
 cmd [[au BufNewFile,BufRead *.sdf setfiletype xml]]
 cmd [[au BufNewFile,BufRead *.world setfiletype xml]]
 
-cmd [[highlight Pmenu guibg=black]]
-cmd [[highlight PmenuSel guibg=blue]]
-cmd [[highlight PmenuThumb guibg=blue]]
-cmd [[highlight Visual guibg=brown]]
-cmd [[highlight CursorLine guibg=#500050]]
-cmd [[highlight CursorColumn guibg=#500050]]
+-- cmd [[highlight Pmenu guibg=black]]
+-- cmd [[highlight PmenuSel guibg=blue]]
+-- cmd [[highlight PmenuThumb guibg=blue]]
+-- cmd [[highlight Visual guibg=brown]]
+-- cmd [[highlight CursorLine guibg=#500050]]
+-- cmd [[highlight CursorColumn guibg=#500050]]
+
+g.minimap_width = 10
+g.minimap_auto_start = 1
+g.minimap_auto_start_win_enter = 1
+g.minimap_git_colors = 1

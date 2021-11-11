@@ -34,4 +34,6 @@ map('n', '<C-p>', "<cmd>lua require('telescope.builtin').find_files()<cr>", defa
 map('n', '<C-b>', "<cmd>lua require('telescope.builtin').buffers()<cr>", default_opts)
 
 -- ranger
-map('n', '<C-n>', ':RnvimrToggle<CR>', {})       -- open/close
+-- map('n', '<C-n>', ':RnvimrToggle<CR>', {})       -- open/close
+
+map('n', '<C-n>', ':NvimTreeToggle<CR>', {})       -- open/close

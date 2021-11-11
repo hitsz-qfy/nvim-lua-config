@@ -7,6 +7,8 @@
 - ccls
 - pyright
 - cmake-language-server
+<!-- - ranger -->
+- minimap
 
 ## Usage
 
@@ -24,6 +26,7 @@ $ nvim
 - nvim-lspconfig
 - nvim-cmp
 - nvim-treesitter
+- nvim-tree
 - telescope
 - gitsigns
 - nvim-web-devicons

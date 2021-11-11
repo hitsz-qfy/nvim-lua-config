@@ -147,3 +147,15 @@ require('telescope').setup({
   -- other configuration values here
 })
 
+-- this is lua code (in `init.lua`)
+vim.g.nvim_tree_show_icons = {
+  git = 0,
+  folders = 1, -- or 0,
+  files = 1, -- or 0,
+  folder_arrows = 1, -- or 0
+}
+vim.g.nvim_tree_gitignore = 0
+vim.g.nvim_tree_git_hl = 0
+
+local neogit = require('neogit')
+neogit.setup {}
